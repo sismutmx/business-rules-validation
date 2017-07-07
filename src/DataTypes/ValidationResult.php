@@ -51,10 +51,10 @@ class ValidationResult
     }
 
     /**
-     * @param ValidationMessage $validationMessage
+     * @param array $validationMessage
      * @return ValidationResult
      */
-    public function addClientMessage(ValidationMessage $validationMessage)
+    public function addClientMessage(array $validationMessage)
     {
         array_push($this->clientMessages, $validationMessage);
         return $this;

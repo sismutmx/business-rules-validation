@@ -24,7 +24,7 @@ trait BusinessRulesValidator
         /** @var ValidationResult $finalValidationResult */
         $finalValidationResult = app(ValidationResult::class);
 
-        if (empty($this->validators)) {
+        if (empty($validators)) {
             $finalValidationResult->setSuccess(true);
             return $finalValidationResult;
         }
@@ -36,7 +36,7 @@ trait BusinessRulesValidator
             $validator = $validatorFactory->create($path);
             /** @var ValidationResult $validationResult */
             $validationResult = $validator->validate($params);
-            if($validationResult->isSuccess()) {
+            if ($validationResult->isSuccess()) {
                 continue;
             }
 
@@ -48,9 +48,9 @@ trait BusinessRulesValidator
             }
 
             $successfulValidations = false;
-            if($breakAtFirstFail) {
+            if ($breakAtFirstFail) {
                 $finalValidationResult->setSuccess($successfulValidations);
-                return $this;
+                return $finalValidationResult;
             }
         }
         $finalValidationResult->setSuccess($successfulValidations);
