@@ -75,4 +75,29 @@ class ValidationResult
     {
         $this->systemMessages = $systemMessages;
     }
+
+    /**
+     * Obtener los mensajes para usuarios del sistema resultado de validaciones
+     * @return array
+     */
+    public function clientMessagesToArray()
+    {
+        $clientMessages = $this->getClientMessages();
+        if (empty($clientMessages)) {
+            return $clientMessages;
+        }
+
+        $messages = [];
+        /** @var ValidationMessage $clientMessage */
+        foreach ($clientMessages as $clientMessage) {
+            $item = [
+                'type' => $clientMessage->getAlertType(),
+                'msg' => $clientMessage->getMessage()
+            ];
+
+            array_push($messages, $item);
+        }
+
+        return $messages;
+    }
 }

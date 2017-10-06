@@ -10,6 +10,7 @@ namespace Sismut\BusinessRulesValidation\DataTypes;
 class ValidationMessage
 {
     /**
+     * Código de error relacionado
      * @var
      */
     protected $errorCode;
@@ -23,6 +24,12 @@ class ValidationMessage
      * @var
      */
     protected $logLevel;
+
+    /**
+     * Tipo de alerta para mostrar al usuario: success, danger, info, etc.
+     * @var string
+     */
+    protected $alertType;
 
     /**
      * @var array
@@ -59,5 +66,21 @@ class ValidationMessage
     public function setErrorCode($errorCode)
     {
         $this->errorCode = $errorCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlertType()
+    {
+        return $this->alertType;
+    }
+
+    /**
+     * @param string $alertType
+     */
+    public function setAlertType($alertType)
+    {
+        $this->alertType = $alertType;
     }
 }
