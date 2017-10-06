@@ -51,6 +51,14 @@ class ValidationResult
     }
 
     /**
+     * @param array $clientMessages
+     */
+    public function setClientMessages(array $clientMessages)
+    {
+        $this->clientMessages = $clientMessages;
+    }
+
+    /**
      * @param array $validationMessage
      * @return ValidationResult
      */
