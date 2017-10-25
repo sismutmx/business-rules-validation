@@ -34,8 +34,12 @@ trait BusinessRulesValidator
         $validatorFactory = app(ValidatorFactory::class);
         foreach ($validators as $path) {
             $validator = $validatorFactory->create($path);
+
             /** @var ValidationResult $validationResult */
             $validationResult = $validator->validate($params);
+
+            $finalValidationResult->setResponseParams($validationResult->getResponseParams());
+
             if ($validationResult->isSuccess()) {
                 continue;
             }
