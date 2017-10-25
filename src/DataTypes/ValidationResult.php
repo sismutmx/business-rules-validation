@@ -27,6 +27,12 @@ class ValidationResult
     protected $systemMessages = [];
 
     /**
+     * Arreglo de parametros que se deseen retornar desde un validador especifico
+     * @var array
+     */
+    protected $responseParams = [];
+
+    /**
      * @return boolean
      */
     public function isSuccess()
@@ -107,5 +113,56 @@ class ValidationResult
         }
 
         return $messages;
+    }
+
+    /**
+     * @return array
+     */
+    public function getResponseParams()
+    {
+        return $this->responseParams;
+    }
+
+    /**
+     * @param array $responseParams
+     */
+    public function setResponseParams(array $responseParams)
+    {
+        if (!empty($this->responseParams)) {
+            $responseParams = array_merge($this->responseParams, $responseParams);
+        }
+        $this->responseParams = $responseParams;
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     */
+    public function addResponseParam($key, $value)
+    {
+        $this->responseParams[$key] = $value;
+    }
+
+    /**
+     * @param $key
+     * @return bool
+     */
+    public function hasResponseParam($key)
+    {
+        return array_key_exists($key, $this->responseParams);
+    }
+
+    /**
+     * @param $key
+     * @param null $defaultValue
+     * @return null
+     */
+    public function getResponseParamByKey($key, $defaultValue = null)
+    {
+        if (!$this->hasResponseParam($key)) {
+            return $defaultValue;
+        }
+
+        return $this->responseParams[$key];
     }
 }
