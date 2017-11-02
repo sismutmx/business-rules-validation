@@ -47,7 +47,7 @@ class ValidationResult
      * @param ValidationMessage $validationMessage
      * @return ValidationResult
      */
-    public function addClientMessage(ValidationMessage $validationMessage)
+    public function addClientValidationMessage(ValidationMessage $validationMessage)
     {
         array_push($this->clientMessages, $validationMessage);
         return $this;
@@ -146,14 +146,15 @@ class ValidationResult
     }
 
     /**
-     * @param array $message
+     * @param $type
+     * @param $message
      * @return $this
      */
-    public function addClientMessageFromArray(array $message)
+    public function addClientMessage($type, $message)
     {
         $validationMessage = new ValidationMessage();
-        $validationMessage->setAlertType($message['type']);
-        $validationMessage->setMessage($message['msg']);
+        $validationMessage->setAlertType($type);
+        $validationMessage->setMessage($message);
         array_push($this->clientMessages, $validationMessage);
         return $this;
     }
