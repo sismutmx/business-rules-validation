@@ -9,6 +9,11 @@ namespace Sismut\BusinessRulesValidation\DataTypes;
  */
 class ValidationMessage
 {
+    const TYPE_DANGER = 'danger';
+    const TYPE_SUCCESS = 'success';
+    const TYPE_INFO = 'info';
+    const TYPE_WARNING = 'warning';
+
     /**
      * Código de error relacionado
      * @var
