@@ -10,11 +10,6 @@ namespace Sismut\BusinessRulesValidation\DataTypes;
 class ValidationResult
 {
     /**
-     * @var bool
-     */
-    protected $success = false;
-
-    /**
      * Mensajes para cliente
      * @var array
      */
@@ -31,22 +26,6 @@ class ValidationResult
      * @var array
      */
     protected $responseParams = [];
-
-    /**
-     * @return boolean
-     */
-    public function isSuccess()
-    {
-        return $this->success;
-    }
-
-    /**
-     * @param boolean $success
-     */
-    public function setSuccess($success)
-    {
-        $this->success = $success;
-    }
 
     /**
      * @return array
@@ -164,5 +143,18 @@ class ValidationResult
         }
 
         return $this->responseParams[$key];
+    }
+
+    /**
+     * @param array $message
+     * @return $this
+     */
+    public function addClientMessageFromArray(array $message)
+    {
+        $validationMessage = new ValidationMessage();
+        $validationMessage->setAlertType($message['type']);
+        $validationMessage->setMessage($message['msg']);
+        array_push($this->clientMessages, $validationMessage);
+        return $this;
     }
 }
