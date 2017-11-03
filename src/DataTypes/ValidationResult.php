@@ -7,7 +7,7 @@ namespace Sismut\BusinessRulesValidation\DataTypes;
  * Date: 5/06/17
  * Time: 11:43 PM
  */
-class ValidationResult
+class ValidationResult extends ProcessResult
 {
     /**
      * Mensajes para cliente
