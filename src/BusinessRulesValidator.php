@@ -46,9 +46,7 @@ trait BusinessRulesValidator
 
             $clientMessages = $validationResult->getClientMessages();
             if (!empty($clientMessages)) {
-                foreach ($clientMessages as $message) {
-                    $finalValidationResult->addClientMessage($message);
-                }
+                $finalValidationResult->setClientMessages($clientMessages);
             }
 
             $successfulValidations = false;
